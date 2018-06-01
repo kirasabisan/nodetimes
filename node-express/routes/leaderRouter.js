@@ -1,32 +1,32 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const dishRouter = express.Router();
+const leaderRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+leaderRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+leaderRouter.route('/')
 .all((req,res,next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req,res,next) => {
-    res.end('Will send all the dishes to you!');
+    res.end('Will send all the leaders to you!');
 })
 .post((req, res, next) => {
-    res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);
+    res.end('Will add the leaders: ' + req.body.name + ' with details: ' + req.body.description);
 })
 .put((req, res, next) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /dishes');
+    res.end('PUT operation not supported on /leaders');
 })
 .delete((req, res, next) => {
-    res.end('Deleting all dishes');
+    res.end('Deleting all leaders');
 });
 
 
-dishRouter.route(':/dishId')
+leaderRouter.route(':/leaderId')
 .all((req,res,next) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -37,13 +37,13 @@ dishRouter.route(':/dishId')
 })
 .post((req, res, next) => {
     res.statusCode = 403;
-    res.end('PUT operation not supported on /dishes/:dishId');
+    res.end('PUT operation not supported on /leaders/:leaderId');
 })
 .put((req, res, next) => {
-    res.end('will update this dish!');
+    res.end('will update this leader!');
 })
 .delete((req, res, next) => {
     res.end('Deleting' + req.params.id );
 });
 
-module.exports = dishRouter;
+module.exports = leaderRouter;
